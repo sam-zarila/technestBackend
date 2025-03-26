@@ -62,10 +62,10 @@ export class PaymentsService {
           'https://api.paychangu.com/payment',
           {
             ...paymentsDto,
-            callback_url: `${process.env.BASE_URL}/api/payment-callback`, // Use BASE_URL environment variable
+            callback_url: `https://technetsystem.netlify.app/`, // Use BASE_URL environment variable
             return_url: `${process.env.BASE_URL}/order-details`, // Redirect to order-details page
             currency: 'MWK',
-            email: 'rootsmicrofinancee@gmail.com',
+            email: 'zarilasam99@gmail.com',
             amount: amount,
           },
           options,
