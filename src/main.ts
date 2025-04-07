@@ -15,8 +15,8 @@ async function bootstrap() {
 
   // Swagger setup
   const config = new DocumentBuilder()
-    .setTitle('API Documentation')
-    .setDescription('API documentation for the application')
+    .setTitle('TechNest Server')
+    .setDescription('api for managing technest transactions')
     .setVersion('1.0')
     .addBearerAuth()
     .build();

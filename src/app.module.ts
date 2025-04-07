@@ -7,24 +7,15 @@ import { PaymentsModule } from './payments/payments.module';
 
 import { ConfigModule } from '@nestjs/config';
 
+import { OrdersModule } from './orders/orders.module';
+import { Orders } from './entitys/orderEntity';
+import { ProductOrderService } from './orders/orders.service';
+import { ProductOrderController } from './orders/orders.controller';
+
 
 @Module({
   imports: [
-    ConfigModule.forRoot(
-      {
-        isGlobal: true
-      }
-    ),
-    // TypeOrmModule.forRoot({
-    //   type: 'postgres',  // Change from 'mysql' to 'postgres'
-    //   host: 'localhost', // Keep as 'localhost' for local development
-    //   port: 5432,        // Default PostgreSQL port
-    //   username: 'postgres',  // Change to your PostgreSQL username
-    //   password: 'tech-nest265', // Change to your PostgreSQL password
-    //   database: 'snapbacks_db',  // Same database name
-    //   entities: [], // Keep your entities
-    //   synchronize: true, // Auto-sync entities (disable in production)
-    // }),
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'dpg-cv6t0g56l47c73dbilr0-a.oregon-postgres.render.com',
@@ -32,23 +23,20 @@ import { ConfigModule } from '@nestjs/config';
       username: 'paysmart_backend_user',
       password: 'bLg5kfZXFLcuywytNftc566Q7yV0SsY5',
       database: 'paysmart_backend',
-      entities: [ ], // Add all your entities
-      synchronize: true, // Set to false in production
-      ssl: true, // Required for Render-hosted PostgreSQL
+      entities: [Orders],
+      synchronize: true,
+      ssl: true,
       extra: {
         ssl: {
-          rejectUnauthorized: false, // Avoids SSL issues
+          rejectUnauthorized: false,
         },
       },
     }),
-  
     PaymentsModule,
-    
-
-    
-   
+    OrdersModule, // This already brings in the controller and service
   ],
-  controllers: [AppController],
-  providers: [AppService ],
+  controllers: [AppController], // ✅ REMOVE ProductOrderController
+  providers: [AppService],      // ✅ REMOVE ProductOrderService
 })
 export class AppModule {}
+
