@@ -29,7 +29,7 @@ export class Orders {
   @Column()
   maxPeople: number;
 
-  @Column()
+  @Column({ nullable: true })
   EndDate: Date;
 
   @BeforeInsert()
