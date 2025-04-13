@@ -71,6 +71,13 @@ export class ProductOrderController {
     return this.productorder.findOrdersByNumber(OrderNumber);
   }
 
+  @Get('email/:email')
+  @ApiOperation({ summary: 'Find order by email' })
+  async findBookingByEmail(@Param('email') email: string): Promise<Orders | string> {
+    return this.productorder.findOrdersByEmail(email);
+  }
+  
+
   @Get()
   @ApiOperation({ summary: 'Get all orders' })
   async getAllOrders(): Promise<Orders[]> {

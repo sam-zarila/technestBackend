@@ -65,7 +65,7 @@ export class ProductOrderService {
         product: OrderDto.product,
         purchaseDate: OrderDto.purchaseDate,
         price: OrderDto.price,
-        paymentMode: OrderDto.paymentMode,
+
         EndDate: OrderDto.EndDate,
         maxPeople,
       });
@@ -102,6 +102,25 @@ export class ProductOrderService {
       throw new Error(`Error while searching for a order: ${error.message}`);
     }
   }
+
+  async findOrdersByEmail(email: string): Promise<Orders | string> {
+    try {
+      const order = await this.OrderRepository.findOne({
+        where: { email },
+      });
+  
+      if (!order) {
+        return `Order with email ${email} not found`;
+      }
+  
+      return order;
+    } catch (error) {
+      console.error(`Error while searching for an order: ${error.message}`);
+      throw new Error(`Error while searching for an order: ${error.message}`);
+    }
+  }
+  
+
 
   async getAllOrders(): Promise<Orders[]> {
     return this.OrderRepository.find();

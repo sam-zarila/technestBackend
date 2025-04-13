@@ -5,7 +5,6 @@ export type Orderparams={
     purchaseDate: Date;
     price: number;
     product:string;
-    paymentMode:string;
     maxPeople:number;
     EndDate:string;
    

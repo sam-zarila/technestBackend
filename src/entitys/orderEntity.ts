@@ -23,8 +23,6 @@ export class Orders {
   @Column()
   price: number;
 
-  @Column()
-  paymentMode: string;
 
   @Column()
   maxPeople: number;

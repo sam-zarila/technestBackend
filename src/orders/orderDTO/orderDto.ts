@@ -5,9 +5,6 @@ export class  OrderDto {
   @ApiProperty({ description: 'ID of the customer ordering' })
     Id:number;
 
-
-
-
   @ApiProperty({ description: 'Name of the customer ordering' })
   CustomerName: string;
 
@@ -22,9 +19,6 @@ export class  OrderDto {
   purchaseDate: Date;
 
   
-
-  @ApiProperty({ description: 'payment mode' })
-  paymentMode: string;
 
   @ApiProperty({ description: 'total price' })
   price: number;
@@ -62,11 +56,6 @@ export class UpdateOrderDto{
   
     @ApiProperty({ description: 'purchase date' })
     purchaseDate: Date;
-  
-    
-  
-    @ApiProperty({ description: 'payment mode' })
-    paymentMode: string;
   
     @ApiProperty({ description: 'total price' })
     price: number;

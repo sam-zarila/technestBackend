@@ -18,20 +18,20 @@ import { ProductOrderController } from './orders/orders.controller';
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'dpg-cv6t0g56l47c73dbilr0-a.oregon-postgres.render.com',
+      host: 'dpg-cvrip2ogjchc7sbaouq0-a.oregon-postgres.render.com',
       port: 5432,
-      username: 'paysmart_backend_user',
-      password: 'bLg5kfZXFLcuywytNftc566Q7yV0SsY5',
-      database: 'paysmart_backend',
+      username: 'technest',
+      password: 'cajTiQGYvgthUwIyUNiIqCEgBZAN2sdn',
+      database: 'technest',
       entities: [Orders],
       synchronize: true,
-      ssl: true,
       extra: {
         ssl: {
           rejectUnauthorized: false,
         },
       },
     }),
+    
     PaymentsModule,
     OrdersModule, // This already brings in the controller and service
   ],
