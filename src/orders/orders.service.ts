@@ -39,53 +39,34 @@ export class ProductOrderService {
   }
 
   async createOrder(OrderDto: OrderDto): Promise<Orders> {
-      // Removed the check for an existing order by id, since this is for creating a new order
     
-      const maxPeople = OrderDto.maxPeople || 1;  // Default maxPeople if not provided
-    
-      // Count how many orders already exist for this product
-      const currentOrdersCount = await this.OrderRepository.count({
-        where: { product: OrderDto.product },
-      });
-    
-      let remainingSpaces = maxPeople - currentOrdersCount;
-    
-      // Check if the product is out of stock
-      if (remainingSpaces <= 0) {
-        throw new ConflictException('This product is out of stock.');
-      }
-    
-      const OrderNumber = await this.generateUniqueOrderNumber();
-    
-      // Create the new order
-      const order = this.OrderRepository.create({
-        OrderNumber,
-        CustomerName: OrderDto.CustomerName,
-        email: OrderDto.email,
-        product: OrderDto.product,
-        purchaseDate: OrderDto.purchaseDate,
-        price: OrderDto.price,
 
-        EndDate: OrderDto.EndDate,
-        maxPeople,
-      });
+    const currentOrdersCount = await this.OrderRepository.count({
+      where: { product: OrderDto.product },
+    });
+
+
+
     
-      // Save the new order to the database
-      await this.OrderRepository.save(order);
-    
-      // Update remaining spaces
-      remainingSpaces--;
-    
-      // Warn if there are limited remaining spaces
-      if (remainingSpaces === 1) {
-        console.warn('Hurry up! Be the last one to order this product!');
-      } else if (remainingSpaces > 1) {
-        console.warn(`Hurry up! Only ${remainingSpaces} orders remaining for this product.`);
-      }
-    
-      return order;
-    }
-    
+
+    const OrderNumber = await this.generateUniqueOrderNumber();
+
+    const order = this.OrderRepository.create({
+      OrderNumber,
+      CustomerName: OrderDto.CustomerName,
+      email: OrderDto.email,
+      product: OrderDto.product,
+      purchaseDate: OrderDto.purchaseDate,
+      price: OrderDto.price,
+      EndDate: OrderDto.EndDate,
+      
+    });
+
+    await this.OrderRepository.save(order);
+    return order;
+  }
+
+ 
   async findOrdersByNumber(OrderNumber: string): Promise<Orders | string> {
     try {
       const order = await this.OrderRepository.findOne({
@@ -204,9 +185,7 @@ export class ProductOrderService {
       updateObject.price = updatedOrderDetails.price;
     }
 
-    if (updatedOrderDetails.maxPeople !== undefined) {
-      updateObject.maxPeople = updatedOrderDetails.maxPeople;
-    }
+  
 
     if (Object.keys(updateObject).length > 0) {
       await this.OrderRepository.update(id, updateObject);

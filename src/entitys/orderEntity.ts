@@ -24,9 +24,6 @@ export class Orders {
   price: number;
 
 
-  @Column()
-  maxPeople: number;
-
   @Column({ nullable: true })
   EndDate: Date;
 

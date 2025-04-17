@@ -23,9 +23,7 @@ export class  OrderDto {
   @ApiProperty({ description: 'total price' })
   price: number;
 
-  @ApiProperty({ description: 'max people' })
-  maxPeople: number;
-
+ 
   
 
   @ApiProperty({ description: 'date to end subscription' })
@@ -63,9 +61,7 @@ export class UpdateOrderDto{
     @ApiProperty({ description: 'order' })
     OrderNumber: string;
 
-        @ApiProperty({ description: 'maxpeople' })
-    maxPeople: number;
-
+  
   
     @ApiProperty({ description: 'date to end subscription' })
     EndDate: string;

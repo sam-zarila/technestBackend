@@ -47,6 +47,11 @@ export class ProductOrderController {
     return  await this.productorder.findAllOrderByCurrentDay();
   }
 
+  // GET /orders/remaining/:product
+
+  
+
+
   @Get('total-orderfee-today')
   @ApiOperation({
     summary: 'Get total amount  for the current day',
